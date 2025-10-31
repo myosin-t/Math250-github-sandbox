@@ -3,4 +3,5 @@ library(usethis)
 create_github_token()
 gitcreds::gitcreds_set()
 
-#use_git
+#To push a git ripo to Github
+use_github()
