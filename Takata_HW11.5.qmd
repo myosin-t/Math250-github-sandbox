@@ -1,0 +1,41 @@
+---
+title: "Takata_HW11.5"
+format: html
+author: Mio Takata
+embed-resources: true
+---
+
+## Problem1
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+carseats <- ISLR2::Carseats
+glimpse(carseats)
+t.test(carseats$Price, mu = 110)
+```
+
+Null hypothesis: mu = 110($\mu = 110$)
+Alternative hypothesis: mu is not 110($H_a: \mu \ne 110$)
+The p-value measure the probability of getting an x-bar this far away from the null hypothesis $\mu$** The small values indicates evidence against the null hypothesis.
+We conclude the mean price is not 110
+
+## Problem2
+Compute a level 90% confidence interval for the mean competitor price in the population from which this sample is drawn. What is the sample mean? What is the margin of error?
+
+```{r}
+mean(carseats$Price,
+     na.rm = TRUE)
+```
+95 percent confidence interval:
+113.4677 118.1223
+sample mean:
+115.795
+
+margin of error = 115.795 - 113.4677 = 2.327
+
+
+
+
+
