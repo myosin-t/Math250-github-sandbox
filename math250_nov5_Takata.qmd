@@ -15,7 +15,8 @@ glimpse(carseats)
 
 ggplot(carseats, aes(x = Price))+
   geom_histogram()+
-  geom_vline(xintercept  = 110)
+  geom_vline(xintercept  = 110)+
+  theme_minimal()
 
 t.test(carseats$Price, mu = 110)
 ```
