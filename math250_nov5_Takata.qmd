@@ -17,17 +17,19 @@ ggplot(carseats, aes(x = Price))+
   geom_histogram()+
   geom_vline(xintercept  = 110)+
   theme_minimal()
-
+```
+It looks like most of the data points are more than 110
+```{r}
 t.test(carseats$Price, mu = 110)
 ```
 
-Null hypothesis: mu = 110($\mu = 110$)
+Null hypothesis: mu = 110($H_0:\mu = 110$)
 
 Alternative hypothesis: mu is not 110($H_a: \mu \ne 110$)
 
 The p-value measure the probability of getting an x-bar this far away from the null hypothesis $\mu$
 
-This small p-value provide evidence against the company’s claim that the average price of their own seats is $110(null-hypothesis)
+This small p-value(1.429e-06) provide evidence against the company’s claim that the average price of their own seats is $110(null-hypothesis)
 
 We conclude the mean price is not 110
 

@@ -3282,6 +3282,9 @@ $ US          &lt;fct&gt; Yes, Yes, Yes, Yes, No, Yes, No, Yes, No, Yes, Yes, Ye
 </figure>
 </div>
 </div>
+</div>
+<p>It looks like most of the data points are more than 110</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(carseats<span class="sc">$</span>Price, <span class="at">mu =</span> <span class="dv">110</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -3297,10 +3300,10 @@ mean of x
   115.795 </code></pre>
 </div>
 </div>
-<p>Null hypothesis: mu = 110(<span class="math inline">\(\mu = 110\)</span>)</p>
+<p>Null hypothesis: mu = 110(<span class="math inline">\(H_0:\mu = 110\)</span>)</p>
 <p>Alternative hypothesis: mu is not 110(<span class="math inline">\(H_a: \mu \ne 110\)</span>)</p>
 <p>The p-value measure the probability of getting an x-bar this far away from the null hypothesis <span class="math inline">\(\mu\)</span></p>
-<p>This small p-value provide evidence against the company’s claim that the average price of their own seats is $110(null-hypothesis)</p>
+<p>This small p-value(1.429e-06) provide evidence against the company’s claim that the average price of their own seats is $110(null-hypothesis)</p>
 <p>We conclude the mean price is not 110</p>
 </section>
 <section id="problem2" class="level2">
