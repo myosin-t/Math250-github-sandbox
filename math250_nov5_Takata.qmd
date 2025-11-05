@@ -48,13 +48,15 @@ sample mean:
 
 margin of error = 115.795 - 113.4677 = 2.327
 
+## Problem3
 ```{r}
 table1<-table(penguins$species, penguins$island) %>% 
   addmargins()
 table1
 ```
 
-
+## Problem4
+https://github.com/myosin-t/Math250-github-sandbox/blob/main/math250_nov5_Takata.html
 
 
 
