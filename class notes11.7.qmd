@@ -1,0 +1,116 @@
+---
+title: "class notes11.7"
+format: html
+author: Mio Takata
+embed-resources: true
+---
+```{r}
+#| label: setup
+#| message: false
+library(tidyverse)
+```
+
+## chi-squared goodness of fit testing
+The $\chi^2$ test is used for a single categorical variable. Let's do an example using `diamonds`.
+
+Suppose we have a sample of size 250 from this set. Is it consistent with the claim that all diamond colors are equally probable.
+
+- $H_0$Null hypothesis: All colors have equal proportions in the equal proportions
+- $H_a$Alternative hypothesis: All colors do **not** have equal proportion in the equal proportions
+```{r}
+set.seed(0) #we have the same sample going forward
+diamond_sample<- diamonds %>% 
+  slice_sample(n = 250)
+```
+
+Next we get a visualization.**bar chart**
+
+```{r}
+ggplot(diamond_sample, aes(x = color))+
+  geom_bar()
+```
+
+Looks like the proportions aren't all the same, but it's still possible this is just due to chance in the sampling.
+
+First we get the counts for the different factor levels.
+
+```{r}
+t<- table(diamond_sample$color)
+t
+
+p_null <- rep(1/7, times = 7)
+p_null # null hypothesis values
+```
+
+now we run the test
+```{r}
+chisq.test(t, p = p_null)
+```
+X-squared = 29.048, 
+df = 6, 
+p-value = 5.958e-05
+
+How the observed data is with the null.
+The p-value measures how consistent our data is with the null. Lower p-value represent strnger evidence against the null.
+
+**A p-value of $5.9*10^{-5}$**
+represents very strong evidence against the null. We conclude that colors are not equally represented in the population.
+
+## ANOVA
+Analysis of variance 
+test whether quantative variable and a categorical variables are independent.
+$H_0 : \mu_1 = \mu_2 = ...\mu_m$
+$H_a : \mu_i \ne \mu_j$ for some i and j
+
+The fundamental idea of ANOVA is to compare the variablitity of the data whtin the groups to varibility between groups.
+- how different means do they have
+- how much variablity within the groups exist?
+
+## From the video
+ANOVA is used to test whether quantitative variable and categorical variables are indepdennt, meaning that if the means are all the same, it is independent
+
+f raito is the probability distribution of f statistics when the null hypothesis is true
+
+## post hoc test
+- Tukey honest significant differences test where mutltiple t-tests between groups are pefromed. It limites the total probability of a type 1 error by demanding smaller p values 
+
+```{r}
+penguins <- penguins %>% 
+  glimpse()
+
+ggplot(penguins, aes(x = species, y = flipper_len))+
+         geom_boxplot()
+```
+## Does species help explain flipper length?
+
+we're looking at indevidual penguins, so it is reasonable to assume that those observations are independent.
+Also, it looks like nomarlly distributed and the length of the boxes are similar, which means that the variances are also the same.
+
+## Histgram
+```{r}
+ggplot(penguins, aes(x = flipper_len))+
+  geom_histogram()+
+  facet_wrap(~species, ncol = 1)
+```
+All of the histogram looks normally distributed.
+
+```{r}
+penguins %>% 
+  group_by(species) %>% 
+  summarize(var(flipper_len, na.rm = TRUE))
+```
+
+# Performing ANOVA, ANOVA table
+```{r}
+model<- aov(flipper_len ~ species, data = penguins)
+summary(model)
+```
+
+Small pvalues shows strong evidnce against the null hypothesis of those two variables are independent
+
+```{r}
+TukeyHSD(model)
+```
+Low p values between each variables show that there is a difference between every varibale.
+
+

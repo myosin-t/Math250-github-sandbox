@@ -1,0 +1,57 @@
+---
+title: "class notes11.5"
+format: html
+author: Mio Takata
+embed-resources: true
+---
+
+index:
+
+```{r}
+#| label: setup
+#| message: false
+library(tidyverse)
+```
+
+A college says that their into stats students are 50% freshman, 30% sophmore, 10% junior, 10%senior. (Population)
+
+- Null hypothesis: those proportions are correct 
+- Alternative hypothesis: thy are not correct
+
+Let's get some data in the sample of n = 65 students
+
+fr:28 So:24 Jr:9 Sr:4(0.062)
+
+we would like to know is our data close enough 
+
+obs: 28, 24, 9, 4 (observed values)
+exp: 32.5, 19.5, 6.5, 6.5 (expected values under the null hypothesis)
+
+we compute **a chi square test statistics**
+
+- **A goodness-of-fit** test compares a single categorical variable's observed frequencies to expected frequencies from a known distribution, 
+
+- **A test of independence** assesses whether two categorical variables are associated or independent
+
+$\chi^2$  = ($\Sigma(Obs-Exp)^2/Exp$) we devide variance by expected value 
+this has $\chi^2$ distribution with k-1 degrees of freedom when k = # of categories
+
+## A goodness of fit test
+In R:
+```{r}
+o <- c(28, 24, 9, 4)
+p_null <- c(.5, .3, .1, .1)
+chisq.test(o, p = p_null) #it needs to know the data and null hypothesis
+```
+
+$\chi^2$  = 3.58
+df = 3
+p = 0.31 <- big
+
+If $H_0$ is true, data like this occurs 31% of the time.
+lower p-values are **evidence against** the null hypothesis. This data is consistent with the null.
+
+**bar graph is needed for Chi square test**
+
+**Do not say** that the null hypothesis is true
+

@@ -1,0 +1,50 @@
+---
+title: "class notes 11.10"
+format: html
+author: Mio Takata
+embed-resources: true
+---
+```{r}
+#| label: setup
+#| message: false
+library(tidyverse)
+```
+
+## ANOVA
+$H_0 : \mu_1 = \mu_2 = ...\mu_m$
+
+$H_a : \mu_i \ne \mu_j$ for some i and j
+
+- Idea: to compare the variability of the observed group means wtih the variabliy within the groups
+
+- Computed as f statistic and get a p value
+- low p-value represent evidnce against the null
+- high p-value means the consistency with the null hypothesis 
+
+## Steps for ANOVA
+1) state the hypothesis
+
+2) visualize data
+
+3) Run the test using aov()
+
+4) state a conclusion in ordinary language
+
+There is sufficient evidence to conclude that all the means are not the same.
+
+5) Conclude that which groups are different
+
+## Assumption of the ANOVA
+
+1) Observations are independent of one other
+   generally not appropriate to work with time series
+
+2) In each group, the qualitative variable is nomally distributed.
+(Can be broken especially for large sample)
+
+**transformation might resolve this issue meaning that we can fix skewed distribution to normal by taking the log of the data**
+
+3) Variance in groups are equal 
+(Can be broken especially for large sample)
+
+if those assumptions are violated, you have to do something with it!
