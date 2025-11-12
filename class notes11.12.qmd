@@ -25,7 +25,6 @@ trout <- trout %>%
 
 ggplot(trout, aes(x = Location, y = Hemo))+
   geom_boxplot()+
-  geom_jitter()
 ```
 
 Let's run the test.
