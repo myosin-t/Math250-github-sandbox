@@ -22,7 +22,7 @@ It looks like most of the data points are more than 110
 ```{r}
 t.test(carseats$Price, mu = 110)
 ```
-
+Good practice 
 Null hypothesis: mu = 110($H_0:\mu = 110$)
 
 Alternative hypothesis: mu is not 110($H_a: \mu \ne 110$)
